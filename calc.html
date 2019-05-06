@@ -1,0 +1,474 @@
+<div id="calc">
+    <h2>Расчет стоимости скважины</h2>
+    <div id="deep" class="slider">
+        <div class="calc-element calc-heading">
+            <p class="slider-heading">Глубина:&nbsp;</p><span id="deep-inline-value" class="slider-heading"> 10
+                м</span>
+        </div>
+        <div id="line-deep" class="calc-element slider-line" data-scale="240">
+            <div id="block-deep" class="slider-block" style="left:0%">
+            </div>
+        </div>
+    </div>
+    <div id="pump-load" class="slider">
+        <div class="calc-element calc-heading">
+            <p class="slider-heading">Загрузка насоса:&nbsp;</p><span id="pump-load-inline-value"
+                class="slider-heading"> 5 м</span>
+        </div>
+        <div id="line-pump-load" class="calc-element slider-line" data-scale="195">
+            <div id="block-pump-load" class="slider-block" style="left:0%">
+            </div>
+        </div>
+    </div>
+    <div id="diameter">
+        <div id="diameter-radio">
+            <p class="calc-element calc-heading">Диаметр обсадной колонны:</p>
+            <div class="calc-element">
+                <label for="diameter1" class="diameter-label calc-label label-pick">125мм</label>
+                <label for="diameter2" class="diameter-label calc-label label-pick">133мм</label>
+                <label for="diameter3" class="diameter-label calc-label label-pick">133мм+113мм</label>
+                <label for="diameter4" class="diameter-label calc-label label-pick">159мм</label>
+            </div>
+        </div>
+        <div id="diameter-radio-hidden" style="display:none">
+            <input type="radio" value="500" name="diameter" id="diameter1">
+            <input type="radio" value="1400" name="diameter" id="diameter2">
+            <input type="radio" value="2500" name="diameter" id="diameter3">
+            <input type="radio" value="3000" name="diameter" id="diameter4">
+        </div>
+    </div>
+    <div id="arrangement">
+        <div id="arrangement-radio">
+            <p class="calc-element calc-heading">Обустройство скаважины:</p>
+            <div class="calc-element">
+                <label for="arrangement1" class="arrangement-label calc-label label-pick">Нет</label>
+                <label for="arrangement2" class="arrangement-label calc-label label-pick">Оголовок</label>
+                <label for="arrangement3" class="arrangement-label calc-label label-pick">Ж/Б кольца</label>
+            </div>
+        </div>
+        <div id="arrangement-radio-hidden" style="display:none">
+            <input type="radio" value="0" name="arrangement" id="arrangement1">
+            <input type="radio" value="2900" name="arrangement" id="arrangement2">
+            <input type="radio" value="9000" name="arrangement" id="arrangement3">
+        </div>
+    </div>
+    <div id="pump">
+        <div id="pump-radio">
+            <p class="calc-element calc-heading">Насос:</p>
+            <div class="calc-element">
+                <label for="pump1" class="pump-label calc-label label-pick">Нет</label>
+                <label for="pump2" class="pump-label calc-label label-pick">Есть</label>
+            </div>
+        </div>
+        <div id="pump-radio-hidden" style="display:none">
+            <input type="radio" value="0" name="pump" id="pump1">
+            <input type="radio" value="6000" name="pump" id="pump2">
+        </div>
+    </div>
+    <div id="hydraulic-tank">
+        <div id="hydraulic-tank-radio">
+            <p class="calc-element calc-heading">Гидробак:</p>
+            <div class="calc-element">
+                <label for="hydraulic-tank1" class="tank-label calc-label label-pick">Нет</label>
+                <label for="hydraulic-tank2" class="tank-label calc-label label-pick">24л</label>
+                <label for="hydraulic-tank3" class="tank-label calc-label label-pick">50л</label>
+                <label for="hydraulic-tank4" class="tank-label calc-label label-pick">100л</label>
+                <label for="hydraulic-tank5" class="tank-label calc-label label-pick">200л</label>
+            </div>
+        </div>
+        <div id="pump-radio-hidden" style="display:none">
+            <input type="radio" value="0" name="hydraulic-tank" id="hydraulic-tank1">
+            <input type="radio" value="1900" name="hydraulic-tank" id="hydraulic-tank2">
+            <input type="radio" value="4000" name="hydraulic-tank" id="hydraulic-tank3">
+            <input type="radio" value="7000" name="hydraulic-tank" id="hydraulic-tank4">
+            <input type="radio" value="19000" name="hydraulic-tank" id="hydraulic-tank5">
+        </div>
+    </div>
+    <div id="pump-control">
+        <div id="pump-control-radio">
+            <p class="calc-element calc-heading">Управление насосом:</p>
+            <div class="calc-element">
+                <label for="pump-control1" class="control-label calc-label label-pick">Нет</label>
+                <label for="pump-control2" class="control-label calc-label label-pick">Реле давления</label>
+            </div>
+        </div>
+        <div id="pump-radio-hidden" style="display:none">
+            <input type="radio" value="0" name="pump-control" id="pump-control1">
+            <input type="radio" value="2500" name="pump-control" id="pump-control2">
+        </div>
+    </div>
+    <div id="excavation">
+        <div id="excavation-radio">
+            <p class="calc-element calc-heading">Земляные работы:</p>
+            <div class="calc-element">
+                <label for="excavation1" class="excavation-label calc-label label-pick">Нет</label>
+                <label for="excavation2" class="excavation-label calc-label label-pick">Ж/Б кольца</label>
+            </div>
+        </div>
+        <div id="excavation-hidden" style="display:none">
+            <input type="radio" value="0" name="excavation" id="excavation1">
+            <input type="radio" value="2500" name="excavation" id="excavation2">
+        </div>
+    </div>
+    <div id="trench" class="slider">
+        <div class="calc-element calc-heading">
+            <p class="slider-heading">Траншея количеством:&nbsp;</p><span id="trench-inline-value"
+                class="slider-heading"> 0 м</span>
+        </div>
+        <div id="line-trench" class="calc-element slider-line" data-scale="50">
+            <div id="block-trench" class="slider-block" style="left:0%">
+            </div>
+        </div>
+    </div>
+    <div id="fare" class="slider">
+        <div class="calc-element calc-heading">
+            <p class="slider-heading">Транспортные расходы:&nbsp;</p><span id="fare-inline-value"
+                class="slider-heading"> 0 км</span>
+        </div>
+        <div id="line-fare" class="calc-element slider-line" data-scale="300">
+            <div id="block-fare" class="slider-block" style="left:0%">
+            </div>
+        </div>
+    </div>
+    <div id="result-box">
+        <div id="result">
+            Стоимость скважины: <br><span>0 руб</span>
+        </div>
+        <div id="montage">
+            Монтажные работы: 0 руб
+        </div>
+        <div id="materials">
+            Материалы: 0 руб
+        </div>
+        <div id="fareResult">
+            Транспортные расходы: 0 руб
+        </div>
+    </div>
+
+</div>
+<style>
+    #calc {
+        width: 968px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    #calc h2 {
+        text-align: center;
+        font-weight: bold;
+
+    }
+
+    .slider-heading {
+        margin: 0;
+    }
+
+    .slider-heading,
+    .calc-element {
+        display: inline-block;
+    }
+
+    .calc-element {
+        margin: 0.5rem;
+        color: #042e9e;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    #result-box {
+        text-align: center;
+    }
+
+    .calc-label {
+        margin: 0 0.5em;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-radius: 25px;
+        padding: 5px;
+        color: #042e9e;
+    }
+
+    .calc-label:hover {
+        background: #51A8E8;
+    }
+
+    .calc-heading {
+        width: 38%;
+        color: #042e9e;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .label-pick {
+        background: #51A8E8;
+        border: 1px dotted #51A8E8;
+    }
+
+    .label-unpick {
+        border: 1px dotted #51A8E8;
+    }
+
+    .slider-line {
+        width: 45%;
+        height: 1px;
+        background: blue;
+        position: relative;
+        margin-top: 2%;
+    }
+
+    .slider-block {
+        width: 25px;
+        height: 25px;
+        background: blue;
+        position: absolute;
+        top: -12px;
+        cursor: pointer;
+        border-radius: 25px;
+    }
+
+    #result span {
+        font-size: 48px;
+        color: #042e9e;
+    }
+
+    @media(max-width:968px) {
+        #calc {
+            width: 600px;
+        }
+
+        .calc-element {
+            display: block;
+        }
+
+        .slider-line {
+            width: 100%;
+            margin: 5% 0;
+        }
+
+        .calc-heading {
+            width: 100%;
+            color: #042e9e;
+            font-size: 22px;
+            font-weight: 600;
+        }
+    }
+
+    @media(max-width:660px) {
+        #calc {
+            width: 100%;
+        }
+
+        .calc-label {
+            margin: 0 0.5em;
+            font-size: 14px;
+        }
+
+        #result-box {
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        'use strict';
+        let diameter = document.getElementsByName('diameter'),
+            arrangement = document.getElementsByName('arrangement'),
+            pump = document.getElementsByName('pump'),
+            tank = document.getElementsByName('hydraulic-tank'),
+            pumpControl = document.getElementsByName('pump-control'),
+            excavation = document.getElementsByName('excavation'),
+            result = document.getElementById('result'),
+            calc = document.getElementById('calc'),
+            montage = document.getElementById('montage'),
+            materials = document.getElementById('materials'),
+            fareResult = document.getElementById('fareResult');
+
+        let deep = {
+            block: document.getElementById('block-deep')
+        }, pumpLoad = {
+            block: document.getElementById('block-pump-load'),
+        }, trench = {
+            block: document.getElementById('block-trench'),
+        }, fare = {
+            block: document.getElementById('block-fare'),
+        },
+            deepInlineValue = document.getElementById('deep-inline-value'),
+            pumpLoadInlineValue = document.getElementById('pump-load-inline-value'),
+            trenchInlineValue = document.getElementById('trench-inline-value'),
+            fareInlineValue = document.getElementById('fare-inline-value');
+
+        if ('ontouchstart' in window) {
+            deep.block.addEventListener('touchstart', moveSlider);
+            pumpLoad.block.addEventListener('touchstart', moveSlider);
+            trench.block.addEventListener('touchstart', moveSlider);
+            fare.block.addEventListener('touchstart', moveSlider);
+
+            function moveSlider(e) {
+                let line = this.parentNode,
+                    block = this,
+                    lineCoords = getCoords(line),
+                    meterMark = line.offsetWidth / line.dataset.scale,
+                    min = parseInt(getComputedStyle(this).left),
+                    thumbCoords = getCoords(this),
+                    shiftX = e.targetTouches[0].clientX - thumbCoords.left;
+
+                document.ontouchmove = function (e) {
+                    var newLeft = e.targetTouches[0].clientX - shiftX - lineCoords.left;
+
+                    if (newLeft < 0) {
+                        newLeft = 0;
+                    }
+                    if (newLeft > line.offsetWidth) {
+                        newLeft = line.offsetWidth;
+                    }
+                    let value = Math.floor(newLeft / meterMark);
+
+                    block.setAttribute('data-value', value);
+                    min = newLeft;
+                    block.style.left = newLeft + 'px';
+
+                    getResult();
+
+                }
+
+                document.ontouchend = function () {
+                    document.ontouchmove = document.ontouchend = null;
+
+                }
+                return false;
+            }
+        } else {
+            deep.block.addEventListener('mousedown', moveSlider);
+            pumpLoad.block.addEventListener('mousedown', moveSlider);
+            trench.block.addEventListener('mousedown', moveSlider);
+            fare.block.addEventListener('mousedown', moveSlider);
+
+            function moveSlider(e) {
+
+                let line = this.parentNode,
+                    block = this,
+                    lineCoords = getCoords(line),
+                    meterMark = line.offsetWidth / line.dataset.scale,
+                    min = parseInt(getComputedStyle(this).left),
+                    thumbCoords = getCoords(this),
+                    shiftX = e.pageX - thumbCoords.left;
+
+                document.onmousemove = function (e) {
+
+                    var newLeft = e.pageX - shiftX - lineCoords.left;
+
+                    if (newLeft < 0) {
+                        newLeft = 0;
+                    }
+                    if (newLeft > line.offsetWidth) {
+                        newLeft = line.offsetWidth;
+                    }
+
+                    let value = Math.floor(newLeft / meterMark);
+                    block.setAttribute('data-value', value);
+
+                    min = newLeft;
+                    block.style.left = newLeft + 'px';
+
+                    getResult();
+                }
+
+                document.onmouseup = function () {
+                    document.onmousemove = document.onmouseup = null;
+                }
+                return false;
+            }
+        }
+
+        calc.addEventListener('change', getResult);
+
+        function getResult() {
+            let deepValue = (+deep.block.dataset.value + 10 || 0) * 1000,
+                pumpLoadValue = (+pumpLoad.block.dataset.value + 5 || 0) * 200,
+                trenchValue = (+trench.block.dataset.value || 0) * 350,
+                fareValue = (+fare.block.dataset.value || 0) * 30,
+                diameterValue,
+                arrangementValue,
+                pumpValue,
+                tankValue,
+                pumpControlValue,
+                excavationValue;
+
+            deepInlineValue.innerHTML = (+deep.block.dataset.value + 10 || 10) + ' м';
+            pumpLoadInlineValue.innerHTML = (+pumpLoad.block.dataset.value + 5 || 5) + ' м';
+            trenchInlineValue.innerHTML = (+trench.block.dataset.value || 0) + ' м';
+            fareInlineValue.innerHTML = (+fare.block.dataset.value || 0) + ' км';
+
+            function getCheked(array, elem) {
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i].checked) {
+                        elem = +array[i].value;
+                        return elem;
+                    }
+                } return 0;
+            }
+
+            diameterValue = getCheked(diameter, diameterValue);
+            arrangementValue = getCheked(arrangement, arrangementValue);
+            pumpValue = getCheked(pump, pumpValue);
+            tankValue = getCheked(tank, tankValue);
+            pumpControlValue = getCheked(pumpControl, pumpControlValue);
+            excavationValue = getCheked(excavation, excavationValue);
+
+            result.innerHTML = 'Стоимость скважины: <br><span>' + +(deepValue + pumpLoadValue + trenchValue + fareValue + diameterValue + arrangementValue + pumpValue + tankValue + pumpControlValue + excavationValue) + ' руб</span>';
+            montage.innerHTML = 'Монтажные работы: ' + +(deepValue + pumpLoadValue + excavationValue + trenchValue) + ' руб';
+            materials.innerHTML = 'Материалы: ' + +(diameterValue + arrangementValue + pumpValue + tankValue + pumpControlValue) + ' руб';
+            fareResult.innerHTML = 'Транспортные расходы: ' + +fareValue + ' руб';
+        }
+
+        function getCoords(elem) {
+            var box = elem.getBoundingClientRect();
+            return {
+                top: box.top + pageYOffset,
+                left: box.left + pageXOffset
+            };
+        }
+
+        let diameterLabel = document.getElementsByClassName('diameter-label'),
+            arrangementLabel = document.getElementsByClassName('arrangement-label'),
+            pumpLabel = document.getElementsByClassName('pump-label'),
+            tankLabel = document.getElementsByClassName('tank-label'),
+            controlLabel = document.getElementsByClassName('control-label'),
+            excavationLabel = document.getElementsByClassName('excavation-label');
+
+        function removeBack(a, arr) {
+            for (let i = a; i < arr.length; i++) {
+                arr[i].classList.remove('label-pick');
+                arr[i].classList.add('label-unpick');
+            }
+        }
+        removeBack(1, diameterLabel);
+        removeBack(1, arrangementLabel);
+        removeBack(1, pumpLabel);
+        removeBack(1, tankLabel);
+        removeBack(1, controlLabel);
+        removeBack(1, excavationLabel);
+
+        function changeBack(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                arr[i].addEventListener('click', function (e) {
+                    for (let i = 0; i < arr.length; i++) {
+                        if (arr[i] == e.target) {
+                            arr[i].classList.add('label-pick');
+                        } else {
+                            arr[i].classList.remove('label-pick');
+                            arr[i].classList.add('label-unpick');
+                        }
+                    }
+                })
+            }
+        }
+        changeBack(diameterLabel);
+        changeBack(arrangementLabel);
+        changeBack(pumpLabel);
+        changeBack(tankLabel);
+        changeBack(controlLabel);
+        changeBack(excavationLabel);
+
+    })
+</script>
