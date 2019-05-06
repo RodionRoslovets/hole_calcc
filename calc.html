@@ -41,15 +41,16 @@
         <div id="arrangement-radio">
             <p class="calc-element calc-heading">Обустройство скаважины:</p>
             <div class="calc-element">
-                <label for="arrangement1" class="arrangement-label calc-label label-pick">Нет</label>
-                <label for="arrangement2" class="arrangement-label calc-label label-pick">Оголовок</label>
-                <label for="arrangement3" class="arrangement-label calc-label label-pick">Ж/Б кольца</label>
+                <!-- <label for="arrangement1" class="arrangement-label calc-label label-pick">Нет</label> -->
+                <label for="arrangement2" class="arrangement-label calc-label label-pick" id="arrangement-label2">Оголовок</label>
+                <label for="arrangement3" class="arrangement-label calc-label label-pick" id="arrangement-label3">Ж/Б кольца</label>
             </div>
         </div>
         <div id="arrangement-radio-hidden" style="display:none">
-            <input type="radio" value="0" name="arrangement" id="arrangement1">
-            <input type="radio" value="2900" name="arrangement" id="arrangement2">
-            <input type="radio" value="9000" name="arrangement" id="arrangement3">
+            <!-- <input type="radio" value="0" name="arrangement" id="arrangement1"> -->
+            <input type="radio" value="0" name="arrangement" id="arrangement-check">
+            <input type="checkbox" value="2900" name="arrangement-check" id="arrangement2">
+            <input type="checkbox" value="9000" name="arrangement-check" id="arrangement3">
         </div>
     </div>
     <div id="pump">
@@ -107,7 +108,7 @@
         </div>
         <div id="excavation-hidden" style="display:none">
             <input type="radio" value="0" name="excavation" id="excavation1">
-            <input type="radio" value="2500" name="excavation" id="excavation2">
+            <input type="radio" value="8000" name="excavation" id="excavation2">
         </div>
     </div>
     <div id="trench" class="slider">
@@ -132,13 +133,13 @@
     </div>
     <div id="result-box">
         <div id="result">
-            Стоимость скважины: <br><span>0 руб</span>
+            Стоимость скважины: <br><span>11000 руб</span>
         </div>
         <div id="montage">
-            Монтажные работы: 0 руб
+            Материалы: 11000 руб
         </div>
         <div id="materials">
-            Материалы: 0 руб
+            СМР: 0 руб
         </div>
         <div id="fareResult">
             Транспортные расходы: 0 руб
@@ -273,15 +274,27 @@
         'use strict';
         let diameter = document.getElementsByName('diameter'),
             arrangement = document.getElementsByName('arrangement'),
+            arrangementCheck = document.getElementsByName('arrangement-check'),
+            arrangement2 = document.getElementById('arrangement2'),
+            arrangement3 = document.getElementById('arrangement3'),
             pump = document.getElementsByName('pump'),
             tank = document.getElementsByName('hydraulic-tank'),
             pumpControl = document.getElementsByName('pump-control'),
             excavation = document.getElementsByName('excavation'),
             result = document.getElementById('result'),
+            arrangementCheckValue = document.getElementById('arrangement-check'),
             calc = document.getElementById('calc'),
             montage = document.getElementById('montage'),
             materials = document.getElementById('materials'),
+            arrangementLabel2 = document.getElementById('arrangement-label2'),
+            arrangementLabel3 = document.getElementById('arrangement-label3'),
             fareResult = document.getElementById('fareResult');
+            let diameterLabel = document.getElementsByClassName('diameter-label'),
+            arrangementLabel = document.getElementsByClassName('arrangement-label'),
+            pumpLabel = document.getElementsByClassName('pump-label'),
+            tankLabel = document.getElementsByClassName('tank-label'),
+            controlLabel = document.getElementsByClassName('control-label'),
+            excavationLabel = document.getElementsByClassName('excavation-label');
 
         let deep = {
             block: document.getElementById('block-deep')
@@ -296,7 +309,49 @@
             pumpLoadInlineValue = document.getElementById('pump-load-inline-value'),
             trenchInlineValue = document.getElementById('trench-inline-value'),
             fareInlineValue = document.getElementById('fare-inline-value');
+            
+            arrangement2.addEventListener('click', function(){      
+                if(arrangementCheckValue.value === '2900' || arrangementCheckValue.value === '11900'){
+                    arrangementCheckValue.value = (+arrangementCheckValue.value) - (+arrangement2.value);
+                } else {
+                    arrangementCheckValue.value = +arrangementCheckValue.value + +arrangement2.value;
+                }
+                if(arrangement2.checked == true || arrangement3.checked == true){
+                    arrangementCheckValue.checked = true;
+                } else {
+                    arrangementCheckValue.checked = false;
+                }
+                if(arrangement2.checked == true){
+                    arrangementLabel2.classList.add('label-pick');
+                    arrangementLabel2.classList.remove('label-unpick');
+                } else{
+                    arrangementLabel2.classList.add('label-unpick');
+                    arrangementLabel2.classList.remove('label-pick');
+                }
+            })
+            arrangement3.addEventListener('click', function(){  
+                              
+                if(arrangementCheckValue.value == '9000' || arrangementCheckValue.value == '11900'){
+                    arrangementCheckValue.value = +arrangementCheckValue.value - +arrangement3.value;
+                } else {
+                    arrangementCheckValue.value = +arrangementCheckValue.value + +arrangement3.value;
+                }
+                if(arrangement2.checked == true || arrangement3.checked == true){
+                    arrangementCheckValue.checked = true;
+                } else {
+                    arrangementCheckValue.checked = false;
+                }
+                if(arrangement3.checked == true){
+                    arrangementLabel3.classList.add('label-pick');
+                    arrangementLabel3.classList.remove('label-unpick');
+                } else {
+                    arrangementLabel3.classList.add('label-unpick');
+                    arrangementLabel3.classList.remove('label-pick');
+                }
+            })
+           
 
+           
         if ('ontouchstart' in window) {
             deep.block.addEventListener('touchstart', moveSlider);
             pumpLoad.block.addEventListener('touchstart', moveSlider);
@@ -383,8 +438,9 @@
         calc.addEventListener('change', getResult);
 
         function getResult() {
-            let deepValue = (+deep.block.dataset.value + 10 || 0) * 1000,
-                pumpLoadValue = (+pumpLoad.block.dataset.value + 5 || 0) * 200,
+                        
+            let deepValue = (+deep.block.dataset.value + 10 || 10) * 1150,
+                pumpLoadValue = (+pumpLoad.block.dataset.value + 5 || 5) * 200,
                 trenchValue = (+trench.block.dataset.value || 0) * 350,
                 fareValue = (+fare.block.dataset.value || 0) * 30,
                 diameterValue,
@@ -392,6 +448,7 @@
                 pumpValue,
                 tankValue,
                 pumpControlValue,
+                resultValue,
                 excavationValue;
 
             deepInlineValue.innerHTML = (+deep.block.dataset.value + 10 || 10) + ' м';
@@ -408,6 +465,8 @@
                 } return 0;
             }
 
+
+            
             diameterValue = getCheked(diameter, diameterValue);
             arrangementValue = getCheked(arrangement, arrangementValue);
             pumpValue = getCheked(pump, pumpValue);
@@ -415,10 +474,16 @@
             pumpControlValue = getCheked(pumpControl, pumpControlValue);
             excavationValue = getCheked(excavation, excavationValue);
 
-            result.innerHTML = 'Стоимость скважины: <br><span>' + +(deepValue + pumpLoadValue + trenchValue + fareValue + diameterValue + arrangementValue + pumpValue + tankValue + pumpControlValue + excavationValue) + ' руб</span>';
-            montage.innerHTML = 'Монтажные работы: ' + +(deepValue + pumpLoadValue + excavationValue + trenchValue) + ' руб';
-            materials.innerHTML = 'Материалы: ' + +(diameterValue + arrangementValue + pumpValue + tankValue + pumpControlValue) + ' руб';
+            resultValue = deepValue + (diameterValue * (+deep.block.dataset.value || 0 + 10)) + pumpLoadValue + trenchValue + fareValue + arrangementValue + pumpValue + tankValue + pumpControlValue + excavationValue;
+            if(isNaN(resultValue))
+            {result.innerHTML = 'Стоимость скважины: <br><span>0 руб</span>';}
+            else{
+            result.innerHTML = 'Стоимость скважины: <br><span>' + +resultValue + ' руб</span>';
+            montage.innerHTML = 'Материалы: ' + +(deepValue + pumpLoadValue + excavationValue + trenchValue) + ' руб';
+            materials.innerHTML = 'СМР: ' + +(diameterValue * (+deep.block.dataset.value || 0 + 10) + arrangementValue + pumpValue + tankValue + pumpControlValue) + ' руб';
             fareResult.innerHTML = 'Транспортные расходы: ' + +fareValue + ' руб';
+            }
+            
         }
 
         function getCoords(elem) {
@@ -429,12 +494,7 @@
             };
         }
 
-        let diameterLabel = document.getElementsByClassName('diameter-label'),
-            arrangementLabel = document.getElementsByClassName('arrangement-label'),
-            pumpLabel = document.getElementsByClassName('pump-label'),
-            tankLabel = document.getElementsByClassName('tank-label'),
-            controlLabel = document.getElementsByClassName('control-label'),
-            excavationLabel = document.getElementsByClassName('excavation-label');
+        
 
         function removeBack(a, arr) {
             for (let i = a; i < arr.length; i++) {
@@ -442,12 +502,12 @@
                 arr[i].classList.add('label-unpick');
             }
         }
-        removeBack(1, diameterLabel);
-        removeBack(1, arrangementLabel);
-        removeBack(1, pumpLabel);
-        removeBack(1, tankLabel);
-        removeBack(1, controlLabel);
-        removeBack(1, excavationLabel);
+        removeBack(0, diameterLabel);
+        removeBack(0, arrangementLabel);
+        removeBack(0, pumpLabel);
+        removeBack(0, tankLabel);
+        removeBack(0, controlLabel);
+        removeBack(0, excavationLabel);
 
         function changeBack(arr) {
             for (let i = 0; i < arr.length; i++) {
@@ -464,7 +524,7 @@
             }
         }
         changeBack(diameterLabel);
-        changeBack(arrangementLabel);
+        /* changeBack(arrangementLabel); */
         changeBack(pumpLabel);
         changeBack(tankLabel);
         changeBack(controlLabel);
